@@ -1,0 +1,76 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  /*making the page scalable by setting font scales*/
+  html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+  }
+  
+  body {
+    font-family: "Inter", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: black;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    max-width: 120rem;
+    padding: 0 3.2rem;
+    margin: 0 auto;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .buttonAndSlideContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button {
+      width: 3rem;
+      height: 3rem;
+      z-index: 3;
+  }
+
+  #imgContainer {
+      transition: 1s;
+      position: absolute;
+  }
+
+  .img {
+    width:  10rem;
+    height: 10rem;
+    /* object-fit: cover; */
+    transition: 1s;
+  }
+
+  .dotContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .dot {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: 1px solid blue;
+
+  }
+
+
+  .moveToLeft {
+      transform: translateX(-10rem);
+  }
+
+  .moveToRight {
+      transform: translateX(10rem);
+  }
