@@ -1,63 +1,83 @@
 "use strict";
-let clickCount = "";
-let moveToTheLeft = 15
-function sliderTesterLeft () {
-    document.getElementById("imgContainer").classList.add("moveToLeft")
-    document.getElementById("imgContainer").classList.remove("moveToRight")
-    clickCount++;
-    console.log(clickCount);
-    // ------ this was my first attempt at animating it, I think I got it a little too complicated ---------
-    // let moveElementById = document.getElementById("imgContainer").style.left
-    // moveElementById = clickCount + moveToTheLeft;
-    // console.log(moveElementById)
-    //---------------------------
-    // if (document.getElementById("imgContainer").style.left = "15rem") {
-    //     document.getElementById("imgContainer").style.left = "0rem" ;  
+let movingLeft = 0;
+let movingRight = 0;
+let positionTrackerLeft = 0;
+let positionTrackerRight = 0;
 
-    // } 
-    //------------------------------------------------------------------------------------------------------
-    console.log("it was clicked");
+function sliderTesterLeft() {
+  // activatingTheCarousel(positionTrackerLeft,positionTrackerRight,movingLeft,10,-10);
+
+  console.log("left has been clicked");
+  positionTrackerLeft++;
+  movingLeft = positionTrackerLeft * 20 + positionTrackerRight * -20 + "rem";
+  movingLeft = "translateX(" + movingLeft + ")";
+  document.getElementById("imgContainer").style.transform = movingLeft;
+  // let moveElementByIdLeft = document.getElementById("imgContainer").style.left;
+  console.log(positionTrackerLeft);
 }
 
-function sliderTesterRight () {
+function sliderTesterRight() {
+  // activatingTheCarousel(positionTrackerRight,positionTrackerLeft,movingRight,-10,10);
 
-    document.getElementById("imgContainer").classList.add("moveToRight")
-    document.getElementById("imgContainer").classList.remove("moveToLeft")
-    // ------ this was my first attempt at animating it, I think I got it a little too complicated ---------
-    // document.getElementById("imgContainer").style.right = "15rem";
-    // if (document.getElementById("imgContainer").style.left = "15rem") {
-    //     document.getElementById("imgContainer").style.right = "0rem"   
-
-    // } 
-    //------------------------------------------------------------------------------------------------------
-
-    console.log("it was clicked");
+  console.log("left has been clicked");
+  positionTrackerRight++;
+  console.log(positionTrackerRight * -20);
+  movingRight = positionTrackerRight * -20 + positionTrackerLeft * 20 + "rem";
+  movingRight = "translateX(" + movingRight + ")";
+  document.getElementById("imgContainer").style.transform = movingRight;
+  // let moveElementByIdRight = document.getElementById("imgContainer").style.left;
+  console.log(positionTrackerRight);
 }
 
+/**
+ * How to get the image to move based on the thumbnail image clicked
+ * Will need to know position of the slide to accurately move it back
+ * Maybe getting the image of the specific position and then going from there
+ */
 
+/*
+this allows for a permanent hover to hold the image in the mainImage section once the hover is lifted, but will change
+if the mouse hovers over another image
+*/
 
+// const period = ".";
 
-// document.querySelector(".leftButton").addEventListener("click", function() {
-//     document.getElementById("img--1").style.left = "-30rem";
-// })
+addOrRemoveImageonMainDiv(
+  ".image1",
+  "image1",
+  "mainImage",
+  "permaHoverImage2",
+  "permaHoverImage3"
+);
 
-
-
-let failedProject = new Image();
-let pump1 = new Image();
-let safetyScary = new Image();
-function init() {
-    failedProject.src = "img/failedProject.jpg"
-    window.requestAnimationFrame(draw)
+function addOrRemoveImageonMainDiv(
+  imageToReference,
+  imageToAdd,
+  mainImage,
+  firstImageToRemove,
+  secondImageToRemove
+) {
+  return document
+    .querySelector(imageToReference)
+    .addEventListener("mouseover", function () {
+      document.getElementById(mainImage).classList.add(imageToAdd);
+      document.getElementById(mainImage).classList.remove(firstImageToRemove);
+      document.getElementById(mainImage).classList.remove(secondImageToRemove);
+    });
 }
 
-function draw() {
-    let ctx = document.getElementById("canvas").getContext("2d");
-    ctx.clearRect(0,0,300,300);
-    ctx.drawImage(failedProject, 0,0);
-    ctx.translate(300,0);
-    ctx.restore();
-
-}
-
-init();
+// document.querySelector(".image1").addEventListener("mouseover", function () {
+//   document.getElementById("mainImage").classList.add("permaHoverImage1");
+//   document.getElementById("mainImage").classList.remove("permaHoverImage2");
+//   document.getElementById("mainImage").classList.remove("permaHoverImage3");
+// });
+document.querySelector(".image2").addEventListener("mouseover", function () {
+  document.getElementById("mainImage").classList.add("permaHoverImage2");
+  document.getElementById("mainImage").classList.remove("permaHoverImage1");
+  document.getElementById("mainImage").classList.remove("permaHoverImage3");
+});
+document.querySelector(".image3").addEventListener("mouseover", function () {
+  document.getElementById("mainImage").classList.add("permaHoverImage3");
+  document.getElementById("mainImage").classList.remove("permaHoverImage1");
+  document.getElementById("mainImage").classList.remove("permaHoverImage2");
+});
