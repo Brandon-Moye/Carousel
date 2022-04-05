@@ -29,55 +29,54 @@ function sliderTesterRight() {
   console.log(positionTrackerRight);
 }
 
-/**
- * How to get the image to move based on the thumbnail image clicked
- * Will need to know position of the slide to accurately move it back
- * Maybe getting the image of the specific position and then going from there
- */
+function shellForAddEventListener(
+  whichImageToHoverOver,
+  imageToAdd,
+  imageToRemove1,
+  imageToRemove2
+) {
+  document
+    .querySelector(whichImageToHoverOver)
+    .addEventListener("mouseover", function () {
+      document.getElementById("mainImage").classList.add(imageToAdd);
+      document.getElementById("mainImage").classList.remove(imageToRemove1);
+      document.getElementById("mainImage").classList.remove(imageToRemove2);
+    });
+}
 
-/*
-this allows for a permanent hover to hold the image in the mainImage section once the hover is lifted, but will change
-if the mouse hovers over another image
-*/
-
-// const period = ".";
-
-addOrRemoveImageonMainDiv(
+shellForAddEventListener(
   ".image1",
-  "image1",
-  "mainImage",
+  "permaHoverImage1",
   "permaHoverImage2",
   "permaHoverImage3"
 );
 
-function addOrRemoveImageonMainDiv(
-  imageToReference,
-  imageToAdd,
-  mainImage,
-  firstImageToRemove,
-  secondImageToRemove
-) {
-  return document
-    .querySelector(imageToReference)
-    .addEventListener("mouseover", function () {
-      document.getElementById(mainImage).classList.add(imageToAdd);
-      document.getElementById(mainImage).classList.remove(firstImageToRemove);
-      document.getElementById(mainImage).classList.remove(secondImageToRemove);
-    });
-}
+shellForAddEventListener(
+  ".image2",
+  "permaHoverImage2",
+  "permaHoverImage1",
+  "permaHoverImage3"
+);
+
+shellForAddEventListener(
+  ".image3",
+  "permaHoverImage3",
+  "permaHoverImage1",
+  "permaHoverImage2"
+);
 
 // document.querySelector(".image1").addEventListener("mouseover", function () {
 //   document.getElementById("mainImage").classList.add("permaHoverImage1");
 //   document.getElementById("mainImage").classList.remove("permaHoverImage2");
 //   document.getElementById("mainImage").classList.remove("permaHoverImage3");
 // });
-document.querySelector(".image2").addEventListener("mouseover", function () {
-  document.getElementById("mainImage").classList.add("permaHoverImage2");
-  document.getElementById("mainImage").classList.remove("permaHoverImage1");
-  document.getElementById("mainImage").classList.remove("permaHoverImage3");
-});
-document.querySelector(".image3").addEventListener("mouseover", function () {
-  document.getElementById("mainImage").classList.add("permaHoverImage3");
-  document.getElementById("mainImage").classList.remove("permaHoverImage1");
-  document.getElementById("mainImage").classList.remove("permaHoverImage2");
-});
+// document.querySelector(".image2").addEventListener("mouseover", function () {
+//   document.getElementById("mainImage").classList.add("permaHoverImage2");
+//   document.getElementById("mainImage").classList.remove("permaHoverImage1");
+//   document.getElementById("mainImage").classList.remove("permaHoverImage3");
+// });
+// document.querySelector(".image3").addEventListener("mouseover", function () {
+//   document.getElementById("mainImage").classList.add("permaHoverImage3");
+//   document.getElementById("mainImage").classList.remove("permaHoverImage1");
+//   document.getElementById("mainImage").classList.remove("permaHoverImage2");
+// });
